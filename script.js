@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const btn = document.querySelector('.button');
     const titleBeer = document.querySelector('.random-beer');
+    const tagline = document.querySelector('.tag_line');
     // const liter = document.querySelector('.liter');
     const descriptionBeer = document.querySelector('.description');
-    const tagline = document.querySelector('.tag_line');
     const brewersTips = document.querySelector('.brewers_tips');
     const image = document.querySelector('.image');
     const foodPairing = document.querySelector('.food_pairing');
@@ -18,25 +18,38 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {      
-            console.log(data);    
+            console.log(data);  
+
+            titleBeer.style.textTransform = 'capitalize';
             const nameData = data[0].name;
-            const descriptionData = data[0].description;
+            titleBeer.innerHTML = nameData;
+
             const taglineData = data[0].tagline;
-            const brewersTipsData = data[0].brewers_tips;
+            tagline.innerHTML = "\"" + taglineData + "\"";
+            
+            const row = document.querySelector('.row');
+            row.style.margin = "2.5rem 0";
+
+            const imageUrlData = data[0].image_url;
+            image.setAttribute('src', imageUrlData);
+
             // const {volume} = data[0];
             // const volumeValueData = volume.value;
             // const volumeUnitData = volume.unit;
-            const imageUrl = data[0].image_url;
-            const food_pairingData = [...data[0].food_pairing];
-
-            titleBeer.innerHTML = nameData;
             // liter.innerHTML = volumeValueData + ' ' + volumeUnitData;
-            tagline.innerHTML = "\"" + taglineData + "\"";
-            brewersTips.innerHTML = brewersTipsData;
+
+            descriptionBeer.style.margin = '2.5rem 0';
+            const descriptionData = data[0].description;
             descriptionBeer.innerHTML = descriptionData;
-            brewersTips.style.backgroundColor = "#FEBC58";
-            image.setAttribute('src', imageUrl);
+
+            const food_pairingData = [...data[0].food_pairing];
             foodPairing.innerHTML = 'Food pairing: ' + food_pairingData.join(', ');
+
+            brewersTips.style.padding = '1.2rem';
+            const brewersTipsData = data[0].brewers_tips;
+            brewersTips.innerHTML = brewersTipsData;
+            brewersTips.style.backgroundColor = "#FEBC58";
+
 
         })
     };

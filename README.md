@@ -6,4 +6,4 @@ Api from https://punkapi.com/
 
 Have a look at the project on https://stonino82.github.io/Random-Beer-Generator/
 
-Inspired on a Ania Kubów project.
+Inspired by an Ania Kubów project.
