@@ -5,9 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const tagline = document.querySelector('.tag_line');
     // const liter = document.querySelector('.liter');
     const descriptionBeer = document.querySelector('.description');
+    const abvIbu = document.querySelector('.abv-ibu');
+    const foodPairing = document.querySelector('.food_pairing');
     const brewersTips = document.querySelector('.brewers_tips');
     const image = document.querySelector('.image');
-    const foodPairing = document.querySelector('.food_pairing');
 
 
     function getBeer(event){
@@ -38,9 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // const volumeUnitData = volume.unit;
             // liter.innerHTML = volumeValueData + ' ' + volumeUnitData;
 
-            descriptionBeer.style.margin = '2.5rem 0';
+            descriptionBeer.style.margin = '1rem 0';
             const descriptionData = data[0].description;
             descriptionBeer.innerHTML = descriptionData;
+
+            const abvData = data[0].abv;
+            const ibuData = data[0].ibu;
+            abvIbu.innerHTML = 'ABV ' + abvData + '% - ' + 'IBU ' + ibuData;
 
             const food_pairingData = [...data[0].food_pairing];
             foodPairing.innerHTML = 'Food pairing: ' + food_pairingData.join(', ');
